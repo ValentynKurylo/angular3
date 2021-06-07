@@ -7,9 +7,13 @@ import {Post} from "../models/post";
   providedIn: 'root'
 })
 export class PostService {
-  private url: 'https://jsonplaceholder.typicode.com/posts'
+  private url = 'https://jsonplaceholder.typicode.com/posts'
   constructor(private httpClint: HttpClient) { }
   getPosts():Observable<Post[]>{
     return this.httpClint.get<Post[]>(this.url)
   }
+  getPost(id:number):Observable<Post>{
+    return this.httpClint.get<Post>(this.url+ '/' + id)
+  }
+
 }
